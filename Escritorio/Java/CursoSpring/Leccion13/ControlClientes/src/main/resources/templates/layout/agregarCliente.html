@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="wwww.w3.org/1999/xhtml">
+    <head>
+        <title>Agregar cliente</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="agregarCliente">
+            <div id="agregarCliente" class="modal fade">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.crear}"></h5>
+                            <button class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <form method="post" th:action="@{/guardar}" th:object="${persona}"
+                              class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="nombre">[[#{persona.nombre}]]:</label>
+                                    <input class="form-control" type="text" name="nombre" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellido">[[#{persona.apellido}]]:</label>
+                                    <input class="form-control" type="text" name="apellido" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">[[#{persona.email}]]:</label>
+                                    <input class="form-control" type="email" name="email" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono">[[#{persona.telefono}]]:</label>
+                                    <input class="form-control" type="tel" name="telefono"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="saldo">[[#{persona.saldo}]]:</label>
+                                    <input class="form-control" type="number" step="any" name="saldo" required/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

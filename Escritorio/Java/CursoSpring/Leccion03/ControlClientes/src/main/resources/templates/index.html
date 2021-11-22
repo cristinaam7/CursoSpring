@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Inicio</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header"/>
+        <br>
+        <a th:href="@{/agregar}" th:text="#{accion.crear}"></a>
+        <br>
+        <br>
+        <div th:if="${personas != null and !personas.empty}">
+            <table border="1">
+                <tr>
+                    <th th:text="#{persona.nombre}"></th>
+                    <th th:text="#{persona.apellido}"></th>
+                    <th th:text="#{persona.email}"></th>
+                    <th th:text="#{persona.telefono}"></th>
+                    <th th:text="#{accion.editar}"></th>
+                    <th th:text="#{accion.eliminar}"></th>
+                </tr>   
+                <tr th:each="persona : ${personas}">
+                    <td th:text="${persona.nombre}"></td>
+                    <td th:text="${persona.apellido}"></td>
+                    <td th:text="${persona.email}"></td>
+                    <td th:text="${persona.telefono}"></td>
+                    <td><a th:href="@{/editar/}+${persona.id_persona}">[[#{accion.editar}]]</a></td>
+                    <td><a th:href="@{/eliminar(id_persona=${persona.id_persona})}">[[#{accion.eliminar}]]</a></td>
+                </tr>
+            </table>
+        </div>
+        <div th:if="${personas == null or personas.empty}">
+            [[#{persona.listaVacia}]]
+        </div>
+        <footer th:replace="layout/plantilla :: footer"/>
+    </body>
+</html>
